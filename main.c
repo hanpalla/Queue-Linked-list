@@ -2,21 +2,18 @@
 #include <conio.h>
 #include <malloc.h>
 #include <string.h>
-struct penduduk
-{
+struct penduduk{
     char noKTP[20];
     char voucher[20];
     char nama[20];
 };    
-struct node
-{
+struct node{
     struct penduduk;
     struct node *next;
 };
 struct node *head;
 struct node *tail;
-int main ()
-{
+int main (){
     int menu;
     struct penduduk info;
     struct node *ptr;
@@ -26,8 +23,7 @@ int main ()
     puts("\nPilhan Menu yang tersedia\n1. Tambah Antrian\n2. Panggil Antrian\n3. Tampilkan Antrian\n4. Keluar");
     printf("\nPilih menu: ");
     scanf("%d",&menu);
-    switch (menu)
-    {
+    switch (menu){
     case 1:
         ptr = (struct node*)malloc(sizeof(struct node));
         fflush(stdin);
@@ -40,15 +36,13 @@ int main ()
         strcpy(ptr->noKTP,info.noKTP);
         strcpy(ptr->nama,info.nama);
         strcpy(ptr->voucher,info.voucher);
-        if(head == NULL)
-        {
+        if(head == NULL){
             head = ptr;
             tail = ptr;
             head->next = NULL;
             tail->next = NULL;
         }
-        else
-        {
+        else{
             tail->next = ptr;
             tail = ptr;
             tail->next = NULL;
@@ -57,11 +51,8 @@ int main ()
     
     case 2:
         if(head == NULL)
-        {
             puts("Antrian kosong");
-        }
-        else
-        {
+        else{
             ptr = head;
             head = head->next;
             printf("Panggilan atas nama %s.\n\n",ptr->nama);
@@ -72,14 +63,10 @@ int main ()
     case 3:
         ptr = head;
         if(head == NULL)
-        {
             puts("Antrian kosong");
-        }
-        else
-        {
+        else{
             puts("Data Antrian\n");
-            while(ptr != NULL)
-            {
+            while(ptr != NULL){
                 printf("%s\t\n",ptr->noKTP);
                 printf("%s\t\n",ptr->nama);
                 printf("Rp.%s\t\n\n",ptr->voucher);
